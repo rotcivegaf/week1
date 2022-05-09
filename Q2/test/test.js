@@ -33,6 +33,8 @@ describe("HelloWorld", function () {
     });
 
     it("Should return true for correct proof", async function () {
+        //[assignment] Add comments to explain what each line is doing
+
         // Calculate:
         // - The input signals to satifies the constraints
         // - The zk-proof to the witness can calculate the output signal
@@ -82,12 +84,16 @@ describe("Multiplier3 with Groth16", function () {
     let verifier;
 
     beforeEach(async function () {
+        //[assignment] insert your script here
+
         Verifier = await ethers.getContractFactory("Multiplier3Verifier");
         verifier = await Verifier.deploy();
         await verifier.deployed();
     });
 
     it("Should return true for correct proof", async function () {
+        //[assignment] insert your script here
+
         const { proof, publicSignals } = await groth16.fullProve(
             { "a":"3", "b":"4", "c":"5" },
             "contracts/circuits/Multiplier3/Multiplier3_js/Multiplier3.wasm",
@@ -109,6 +115,8 @@ describe("Multiplier3 with Groth16", function () {
         expect(await verifier.verifyProof(a, b, c, Input)).to.be.true;
     });
     it("Should return false for invalid proof", async function () {
+        //[assignment] insert your script here
+
         let a = [0, 0];
         let b = [[0, 0], [0, 0]];
         let c = [0, 0];
@@ -123,12 +131,16 @@ describe("Multiplier3 with PLONK", function () {
     let verifier;
 
     beforeEach(async function () {
+        //[assignment] insert your script here
+
         Verifier = await ethers.getContractFactory("PlonkVerifier");
         verifier = await Verifier.deploy();
         await verifier.deployed();
     });
 
     it("Should return true for correct proof", async function () {
+        //[assignment] insert your script here
+
         const { proof, publicSignals } = await plonk.fullProve(
             { "a":"3", "b":"4", "c":"5" },
             "contracts/circuits/Multiplier3_plonk/Multiplier3_js/Multiplier3.wasm",
@@ -149,6 +161,8 @@ describe("Multiplier3 with PLONK", function () {
         expect(await verifier.verifyProof(a, Input)).to.be.true;
     });
     it("Should return false for invalid proof", async function () {
+        //[assignment] insert your script here
+
         let a = '0x00';
         let Imput = [0];
         expect(await verifier.verifyProof(a, Imput)).to.be.false;
